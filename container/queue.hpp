@@ -1,10 +1,10 @@
 #pragma once
 
+#include <queue>
+
 namespace atlas {
 
 template <class T>
-class queue {
-
-};
+using queue = std::queue<T>;
 
 }

@@ -1,13 +1,11 @@
 #pragma once
 
-#include "common/config.hpp"
+#include <list>
 
 namespace atlas {
 
 template <class T>
-class list {
-
-};
+using list = std::list<T>;
 
 }  // namespace atlas
 

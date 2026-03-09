@@ -1,13 +1,11 @@
 #pragma once
 
-#include <functional>
+#include <unordered_map>
 
 namespace atlas {
 
-template <class Key, class T, class Hash = std::hash<Key>, class KeyEqual = std::equal_to<Key>>
-class unordered_map {
-
-};
+template <class Key, class T, class Hash = std::hash<Key>, class Equal = std::equal_to<Key>>
+using unordered_map = std::unordered_map<Key, T, Hash, Equal>;
 
 }  // namespace atlas
 
