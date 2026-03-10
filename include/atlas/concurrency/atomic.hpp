@@ -3,8 +3,8 @@
 #include <type_traits>
 #include <memory>
 
-#include "common/config.hpp"
-#include "common/util.hpp"
+#include "atlas/common/config.hpp"
+#include "atlas/common/util.hpp"
 
 namespace atlas {
 

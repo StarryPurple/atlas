@@ -3,8 +3,8 @@
 #include <thread>
 #include <functional>
 
-#include "common/config.hpp"
-#include "common/util.hpp"
+#include "atlas/common/config.hpp"
+#include "atlas/common/util.hpp"
 
 namespace atlas {
 class thread {
@@ -25,8 +25,8 @@ public:
     }
   }
 
-  SWIRL_DISABLE_COPY(thread);
-  SWIRL_DEFAULT_MOVE(thread);
+  ATLAS_DISABLE_COPY(thread);
+  ATLAS_DEFAULT_MOVE(thread);
 
   bool joinable() const noexcept { return thread_.joinable(); }
   void join() { thread_.join(); }

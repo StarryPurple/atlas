@@ -1,4 +1,4 @@
-#include "concurrency/channel.hpp"
+#include "atlas/concurrency/channel.hpp"
 #include "gtest/gtest.h"
 
 TEST(ChannelTests, ConstructorTest) {

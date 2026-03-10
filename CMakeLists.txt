@@ -8,7 +8,7 @@ add_library(atlas INTERFACE) # Header only
 add_library(Atlas::atlas ALIAS atlas)
 
 target_include_directories(atlas INTERFACE
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/atlas/..>
 ) # Headers only
 
 set(CMAKE_CXX_STANDARD 20)

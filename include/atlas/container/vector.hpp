@@ -2,7 +2,7 @@
 
 #include <cstring>
 
-#include "common/exception.hpp"
+#include "atlas/common/exception.hpp"
 
 namespace atlas {
 template <class T>

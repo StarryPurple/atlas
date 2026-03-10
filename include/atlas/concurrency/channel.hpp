@@ -1,9 +1,9 @@
 #pragma once
 
-#include "common/util.hpp"
-#include "concurrency/mutex.hpp"
-#include "concurrency/condition_variable.hpp"
-#include "container/queue.hpp"
+#include "atlas/common/util.hpp"
+#include "atlas/concurrency/mutex.hpp"
+#include "atlas/concurrency/condition_variable.hpp"
+#include "atlas/container/queue.hpp"
 
 namespace atlas {
 
@@ -22,11 +22,10 @@ public:
 
   // Pass one element into the channel.
   // With infinite buffer, this operation shall always succeed.
+  
   void put(const T& t) {
     ATLAS_UNIMPLEMENTED_FUNCTION();
   }
-
-  // Overload of `put(const T&)` for rvalue references.
   void put(T&& t) {
     ATLAS_UNIMPLEMENTED_FUNCTION();
   }

@@ -2,10 +2,10 @@
 
 #include <future>
 
-#include "common/config.hpp"
-#include "concurrency/mutex.hpp"
-#include "concurrency/condition_variable.hpp"
-#include "memory/memory.hpp"
+#include "atlas/common/config.hpp"
+#include "atlas/concurrency/mutex.hpp"
+#include "atlas/concurrency/condition_variable.hpp"
+#include "atlas/memory/memory.hpp"
 
 namespace atlas {
 namespace detail {
@@ -22,7 +22,7 @@ namespace detail {
     [[no_unique_address]] condition_variable cv;
 
     void mark_ready() {
-      lock_guard lock(mtx);
+      lock_guard<mutex> lock(mtx);
       if (state != State::NotReady) {
         throw std::future_error(std::future_errc::promise_already_satisfied);
       }
@@ -34,7 +34,7 @@ namespace detail {
     void set_value(const T& v) {
       auto tmp = make_shared(v);
       {
-        lock_guard lock(mtx);
+        lock_guard<mutex> lock(mtx);
         if (state != State::NotReady) {
           throw std::future_error(std::future_errc::promise_already_satisfied);
         }
@@ -46,7 +46,7 @@ namespace detail {
     void set_value(T&& v) {
       auto tmp = make_shared(std::move(v));
       {
-        lock_guard lock(mtx);
+        lock_guard<mutex> lock(mtx);
         if (state != State::NotReady) {
           throw std::future_error(std::future_errc::promise_already_satisfied);
         }
@@ -57,7 +57,7 @@ namespace detail {
 
     void set_exception(std::exception_ptr e) {
       {
-        lock_guard lock(mtx);
+        lock_guard<mutex> lock(mtx);
         if (state != State::NotReady) {
           throw std::future_error(std::future_errc::promise_already_satisfied);
         }
@@ -71,12 +71,12 @@ namespace detail {
     }
 
     void wait() {
-      unique_lock lock(mtx);
+      unique_lock<mutex> lock(mtx);
       cv.wait(lock, [this] { return ready(); });
     }
 
     T get() {
-      unique_lock lock(mtx);
+      unique_lock<mutex> lock(mtx);
       cv.wait(lock, [this] { return ready(); });
       if (state == State::Consumed) {
         throw std::future_error(std::future_errc::future_already_retrieved);
@@ -101,7 +101,7 @@ namespace detail {
     [[no_unique_address]] condition_variable cv;
 
     void mark_ready() {
-      lock_guard lock(mtx);
+      lock_guard<mutex> lock(mtx);
       if (state != State::NotReady) {
         throw std::future_error(std::future_errc::promise_already_satisfied);
       }
@@ -116,7 +116,7 @@ namespace detail {
 
     void set_exception(std::exception_ptr e) {
       {
-        lock_guard lock(mtx);
+        lock_guard<mutex> lock(mtx);
         if (state != State::NotReady) {
           throw std::future_error(std::future_errc::promise_already_satisfied);
         }
@@ -130,12 +130,12 @@ namespace detail {
     }
 
     void wait() {
-      unique_lock lock(mtx);
+      unique_lock<mutex> lock(mtx);
       cv.wait(lock, [this] { return ready(); });
     }
 
     void get() {
-      unique_lock lock(mtx);
+      unique_lock<mutex> lock(mtx);
       cv.wait(lock, [this] { return ready(); });
       if (state == State::Consumed) {
         throw std::future_error(std::future_errc::future_already_retrieved);
@@ -261,12 +261,12 @@ template <typename Signature>
 class packaged_task;
 
 template <typename Res, typename... Args>
-class packaged_task<Res(Args)> {
+class packaged_task<Res(Args...)> {
 public:
   packaged_task() = default;
 
   template <typename Func>
-  requires !std::is_same_v<std::remove_cvref_t<Func>, packaged_task>
+  requires (!std::is_same_v<std::remove_cvref_t<Func>, packaged_task>)
   explicit packaged_task(Func&& f):
     func_(std::forward<Func>(f)), promise_() {}
 

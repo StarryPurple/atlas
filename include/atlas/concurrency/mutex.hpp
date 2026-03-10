@@ -2,7 +2,7 @@
 
 #include <mutex>
 
-#include "common/config.hpp"
+#include "atlas/common/config.hpp"
 
 namespace atlas {
 

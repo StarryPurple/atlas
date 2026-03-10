@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include "concurrency/atomic.hpp" // need it?
+#include "atlas/concurrency/atomic.hpp" // need it?
 
 namespace atlas {
 // Memory utilities and adapters for smart pointers.

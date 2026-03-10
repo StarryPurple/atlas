@@ -10,10 +10,10 @@ namespace atlas {
 class out_of_range: public std::out_of_range {
 public:
   out_of_range()
-    : std::out_of_range("[Atlas] [Exception] [Out of range]") {}
+    : std::out_of_range("[Atlas][Exception][Out of range]") {}
 
   explicit out_of_range(const std::string& what_arg)
-    : std::out_of_range("[Atlas] [Exception] [Out of range] " + what_arg) {}
+    : std::out_of_range("[Atlas][Exception][Out of range]\n\t" + what_arg) {}
 };
 
 // Used when arguments logically unfit the current circumstance are passed in.
@@ -22,18 +22,18 @@ public:
 class invalid_argument: public std::invalid_argument {
 public:
   invalid_argument()
-    : std::invalid_argument("[Atlas] [Exception] [Invalid argument]") {}
+    : std::invalid_argument("[Atlas][Exception][Invalid argument]") {}
 
   explicit invalid_argument(const std::string& what_arg)
-    : std::invalid_argument("[Atlas] [Exception] [Invalid argument] " + what_arg) {}
+    : std::invalid_argument("[Atlas][Exception][Invalid argument]\n\t" + what_arg) {}
 };
 
 class runtime_error: public std::runtime_error {
 public:
   runtime_error()
-    : std::runtime_error("[Atlas] [Exception] [Runtime error]") {}
+    : std::runtime_error("[Atlas][Exception][Runtime error]") {}
 
   explicit runtime_error(const std::string& what_arg)
-    : std::runtime_error("[Atlas] [Exception] [Runtime error] " + what_arg) {}
+    : std::runtime_error("[Atlas][Exception][Runtime error]\n\t" + what_arg) {}
 };
 } // namespace atlas

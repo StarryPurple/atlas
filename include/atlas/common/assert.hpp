@@ -10,7 +10,7 @@ inline void AssertFail(std::string_view expr,
                        std::string_view file,
                        int line,
                        std::string_view message) {
-  std::cerr << "Atlas assertion failed: " << expr << " at " << file << ":" << line;
+  std::cerr << "[Atlas][Assertion failure]\n\t" << expr << " at " << file << ":" << line;
   if(!message.empty()) {
     std::cerr << " - " << message;
   }

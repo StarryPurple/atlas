@@ -2,8 +2,8 @@
 
 #include <condition_variable>
 
-#include "common/config.hpp"
-#include "concurrency/mutex.hpp"
+#include "atlas/common/config.hpp"
+#include "atlas/concurrency/mutex.hpp"
 
 namespace atlas {
 

@@ -9,7 +9,7 @@ No further usages (like, tools for other projects) is designed or expected by th
 
 # What does this project contain?
 
-The main stuff are divided into four base directories:
+The main stuff are divided into four directories:
 - `common/`, which includes exceptions, some basic debug utils, and some configurations.
 - `memory/`, which contains smart pointers from STL `<memory>`. Currently, they're just typedefs.
 - `container/`, which contains re-implemented in-memory data containers.

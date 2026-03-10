@@ -8,8 +8,8 @@ namespace atlas {
 
 class unimplemented_error : public std::exception {
 public:
-  explicit unimplemented_error(const char* msg) : msg_("[Atlas] [Unimplemented] ") { msg_ += msg; }
-  explicit unimplemented_error(const std::string& msg) : msg_("[Atlas] [Unimplemented] ") { msg_ += msg; }
+  explicit unimplemented_error(const char* msg) : msg_("[Atlas][Unimplemented] ") { msg_ += msg; }
+  explicit unimplemented_error(const std::string& msg) : msg_("[Atlas][Unimplemented] ") { msg_ += msg; }
   const char* what() const noexcept override { return msg_.c_str(); }
 private:
   std::string msg_;
@@ -18,7 +18,7 @@ private:
 namespace detail {
   template <typename... Args>
   void debug_print(std::format_string<Args...> fmt, Args&&... args) {
-    std::string message = std::format("[Atlas] [Debug]\n\t{}", std::vformat(fmt.get(), std::make_format_args(args...)));
+    std::string message = std::format("[Atlas][Debug]\n\t{}", std::vformat(fmt.get(), std::make_format_args(args...)));
     std::cerr << message << std::endl;
   }
 } // namespace atlas::detail
